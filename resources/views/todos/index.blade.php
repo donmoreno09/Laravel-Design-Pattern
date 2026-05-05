@@ -3,7 +3,9 @@
 @section('content')
 
 <div class="row">
-    <div class="col-xl-6 m-auto">
+    <div class="col-xl-6 m-auto shadow p-3">
+
+        <h4 class="text-center fw-bold border-bottom pb-2"> Repository + Service Design Pattern </h4>
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success"> {{ $message }}</div>
@@ -15,7 +17,7 @@
             @csrf
 
             {{-- Title --}}
-            <div class="form-group mb-3">
+            <div class="form-group mb-3 mt-4">
                 <label for="title"> Title </label>
                 <input type="text" class = "form-control" placeholder = "Title" id = "title" name = "title" />
 

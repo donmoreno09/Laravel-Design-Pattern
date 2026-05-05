@@ -28,11 +28,8 @@ class TodoRepository implements TodoInterface
      * Function: getTodos
      * Description: This function will save todo
      */
-    public function saveTodo($request)
+    public function saveTodo($todoRequest)
     {
-        return Todo::create([
-            'title' => $request->title,
-            'description' => $request->description
-        ]);
+        return Todo::create($todoRequest);
     }
 }
