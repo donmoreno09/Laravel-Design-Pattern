@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Todo;
+use App\Models\User;
+use App\Notifications\TodoCreatedNotification;
 
 class TodoObserver
 {
@@ -11,7 +13,12 @@ class TodoObserver
      */
     public function created(Todo $todo): void
     {
-        dd($todo);
+        $users = User::all();
+
+        foreach($users as $user)
+        {
+            $user->notify(new TodoCreatedNotification($todo));
+        }
     }
 
     /**
