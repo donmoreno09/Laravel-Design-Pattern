@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Interfaces\TodoInterface;
+use App\Models\Todo;
+use App\Observers\TodoObserver;
 use App\Repositories\TodoRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,6 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Todo::observe(TodoObserver::class);
     }
 }

@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-xl-6 m-auto shadow p-3">
 
-        <h4 class="text-center fw-bold border-bottom pb-2"> Repository + Service Design Pattern </h4>
+        <h4 class="text-center fw-bold border-bottom pb-2"> Observer Design Pattern </h4>
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success"> {{ $message }}</div>
