@@ -3,9 +3,8 @@
 namespace App\Providers;
 
 use App\Interfaces\TodoInterface;
-use App\Models\Todo;
-use App\Observers\TodoObserver;
 use App\Repositories\TodoRepository;
+use App\Singletons\Logger;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(TodoInterface::class, TodoRepository::class);
+        $this->app->singleton(Logger::class, fn() => new Logger());
     }
 
     /**

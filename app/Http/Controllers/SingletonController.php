@@ -6,22 +6,17 @@ use App\Singletons\Logger;
 
 class SingletonController extends Controller
 {
+    public function __construct(private Logger $logger) {}
+
     public function singletonExample()
     {
-        $logger = Logger::getInstance();
-        $logger->dumpLog('Singleton Log Message - Instance 1');
+        $this->logger->dumpLog('Singleton Log Message - Instance 1');
+        $this->logger->dumpLog('Singleton Log Message - Instance 2');
+        $this->logger->dumpLog('Singleton Log Message - Instance 3');
 
-        $logger = Logger::getInstance();
-        $logger->dumpLog('Singleton Log Message - Instance 2');
-
-        $logger = Logger::getInstance();
-        $logger->dumpLog('Singleton Log Message - Instance 3');
-
-        $anotherController = new AnotherController();
-        
+        $anotherController = app(AnotherController::class);
         $anotherController->singletonFromAnotherController('Another Controller');
 
         return 'Log has been logged xD';
     }
 }
-
