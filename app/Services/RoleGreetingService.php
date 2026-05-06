@@ -17,24 +17,16 @@ class RoleGreetingService
         //
     }
 
-    public function getGreeting($role) 
+    public function getGreeting($role)
     {
-        switch($role) {
-            case 'admin':
-                $strategy = new AdminGreeting;
-                break;
-            case 'editor':
-                $strategy = new EditorGreeting;
-                break;
-            case 'publisher':
-                $strategy = new PublisherGreeting;
-                break;
-            default:
-                $strategy = new DefaultGreeting;
-        }
-        
-        $greetContext = new GreetingContext($strategy);
-        
-        return $greetContext->showGreeting();
+        $strategies = [
+            'admin'     => AdminGreeting::class,
+            'editor'    => EditorGreeting::class,
+            'publisher' => PublisherGreeting::class,
+        ];
+
+        $strategyClass = $strategies[$role] ?? DefaultGreeting::class;
+
+        return (new GreetingContext(new $strategyClass))->showGreeting();
     }
 }
