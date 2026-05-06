@@ -7,9 +7,9 @@
 
         <h4 class="text-center fw-bold border-bottom pb-2"> Observer Design Pattern </h4>
 
-        @if ($message = Session::get('success'))
+        @if ($message = session('success'))
             <div class="alert alert-success"> {{ $message }}</div>
-        @elseif ($message = Session::get('error'))
+        @elseif ($message = session('error'))
             <div class="alert alert-danger"> {{ $message }}</div>
         @endif
 

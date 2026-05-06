@@ -6,12 +6,10 @@ use App\Interfaces\TodoInterface;
 
 class TodoService
 {
-    public $todoInterface;
-
     /**
      * Create a new class instance.
      */
-    public function __construct(TodoInterface $todoInterface)
+    public function __construct(private TodoInterface $todoInterface)
     {
         $this->todoInterface = $todoInterface;
     }

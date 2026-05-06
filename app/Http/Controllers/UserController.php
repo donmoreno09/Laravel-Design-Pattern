@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TodoFormRequest;
-use App\Services\TodoService;
+use App\Http\Requests\UserRegistrationRequest;
+use App\Services\UserService;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
-class TodoController extends Controller
-{
-    public function __construct(private TodoService $todoService)
+class UserController extends Controller
+{    
+    public function __construct(private UserService $userService)
     {
-        $this->todoService = $todoService;
+        $this->userService = $userService;
     }
+
 
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
-        $todos = $this->todoService->getTodos();
+        $users = $this->userService->getUsers();
 
-        return view('todos.index', compact('todos'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -35,16 +35,15 @@ class TodoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(TodoFormRequest $request)
+    public function store(UserRegistrationRequest $request)
     {
-        # Save todo function
-        $todo = $this->todoService->saveTodo($request);
+        $user = $this->userService->createAndSaveUser($request->validated());
 
-        if($todo) {
-            return back()->with('success', 'Todo has been created successfully');
+        if($user) {
+            return back()->with('success', 'User Registered Successfully!');
         }
 
-        return back()->with('error', 'Failed to create todo');
+        return back()->with('error', 'Registration Failed');
     }
 
     /**
